@@ -24,6 +24,7 @@
 		8A79674416114B3300B3AD10 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A79671C16114B3300B3AD10 /* Foundation.framework */; };
 		8A79674C16114B3300B3AD10 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8A79674A16114B3300B3AD10 /* InfoPlist.strings */; };
 		8A79674F16114B3300B3AD10 /* Refinement2Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A79674E16114B3300B3AD10 /* Refinement2Tests.m */; };
+		C3ED903416124213006647FD /* ssiTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C3ED903316124213006647FD /* ssiTableViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -60,6 +61,8 @@
 		8A79674B16114B3300B3AD10 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		8A79674D16114B3300B3AD10 /* Refinement2Tests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Refinement2Tests.h; sourceTree = "<group>"; };
 		8A79674E16114B3300B3AD10 /* Refinement2Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Refinement2Tests.m; sourceTree = "<group>"; };
+		C3ED903216124213006647FD /* ssiTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ssiTableViewController.h; sourceTree = "<group>"; };
+		C3ED903316124213006647FD /* ssiTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ssiTableViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -126,6 +129,8 @@
 				8A79673816114B3300B3AD10 /* ssiViewController.h */,
 				8A79673916114B3300B3AD10 /* ssiViewController.m */,
 				8A79672116114B3300B3AD10 /* Supporting Files */,
+				C3ED903216124213006647FD /* ssiTableViewController.h */,
+				C3ED903316124213006647FD /* ssiTableViewController.m */,
 			);
 			path = Refinement2;
 			sourceTree = "<group>";
@@ -278,6 +283,7 @@
 				8A79672716114B3300B3AD10 /* main.m in Sources */,
 				8A79672B16114B3300B3AD10 /* ssiAppDelegate.m in Sources */,
 				8A79673A16114B3300B3AD10 /* ssiViewController.m in Sources */,
+				C3ED903416124213006647FD /* ssiTableViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -461,6 +467,7 @@
 				8A79675416114B3300B3AD10 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		8A79675516114B3300B3AD10 /* Build configuration list for PBXNativeTarget "Refinement2Tests" */ = {
 			isa = XCConfigurationList;
@@ -469,6 +476,7 @@
 				8A79675716114B3300B3AD10 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
