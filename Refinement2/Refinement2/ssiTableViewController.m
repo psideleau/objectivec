@@ -8,27 +8,36 @@
 
 #import "ssiTableViewController.h"
 
-@interface ssiTableViewController ()
 
-@end
 
 @implementation ssiTableViewController
-
+@synthesize submit;
+@synthesize tableView; 
 - (id)initWithStyle:(UITableViewStyle)style
 {
-    self = [super initWithStyle:style];
+ //  self = [super initWithStyle:UITableViewStylePlain];
     if (self) {
         // Custom initialization
     }
     return self;
 }
 
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    CGRect screenRect = [[UIScreen mainScreen] bounds];
+      tableView = [[UITableView alloc] initWithFrame:CGRectMake(0,0,screenRect.size.width,300) style:UITableViewStylePlain];
+     tableView.delegate = self;
+    tableView.dataSource = self;
+     [[self view] addSubview:tableView];
+          tableView.allowsMultipleSelection = true;
     
-    selections = [NSArray alloc];
-    selections = [selections initWithObjects:@"one", @"two", @"three", nil ];
+    selections = [NSMutableDictionary dictionaryWithObjectsAndKeys:
+                   [NSNumber numberWithBool:NO], @"one",
+                  [NSNumber numberWithBool:NO], @"two",
+                  [NSNumber numberWithBool:NO], @"three",
+                  nil];
 
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
@@ -51,7 +60,7 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 2;
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -62,15 +71,26 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *CellIdentifier = @"Cell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
+    UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:CellIdentifier];
   
     if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
     
     // Configure the cell.
-    cell.textLabel.text = [self->selections objectAtIndex:indexPath.row];
+    NSString *key = [[selections allKeys] objectAtIndex:indexPath.row];
+    cell.textLabel.text = key;
     
+    NSNumber *selected = (NSNumber *) [selections valueForKey:key];
+   /*
+    if ([selected boolValue] == NO)
+    {
+   //         cell.accessoryType = UITableViewCellAccessoryNone;
+    }
+    else {
+  //      cell.accessoryType = UITableViewCellAccessoryCheckmark;
+
+    }*/
     return cell;
 }
 
@@ -117,6 +137,27 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+//    static NSString *CellIdentifier = @"Cell";
+//    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
+    
+    [self.tableView deselectRowAtIndexPath:[self.tableView indexPathForSelectedRow] animated:YES];
+
+    NSString *key = [[selections allKeys] objectAtIndex:indexPath.row];
+    NSLog(@"%@", key);
+          
+    [selections setValue:[NSNumber numberWithBool:YES] forKey:key];
+       
+    
+    UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:indexPath];
+    if (cell.accessoryType == UITableViewCellAccessoryNone) {
+        cell.accessoryType = UITableViewCellAccessoryCheckmark;
+        // Reflect selection in data model
+    } else if (cell.accessoryType == UITableViewCellAccessoryCheckmark) {
+        cell.accessoryType = UITableViewCellAccessoryNone;
+        // Reflect deselection in data model
+    }
+   // [tableView reloadData];
+    
     // Navigation logic may go here. Create and push another view controller.
     /*
      <#DetailViewController#> *detailViewController = [[<#DetailViewController#> alloc] initWithNibName:@"<#Nib name#>" bundle:nil];

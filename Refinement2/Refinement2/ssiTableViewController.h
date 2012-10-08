@@ -8,9 +8,13 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ssiTableViewController : UITableViewController
+@interface ssiTableViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
 {
-    NSArray *selections;
-}
+    NSDictionary *selections;
+    UITableView *tableView;
+    UIButton *submit;
 
+}
+@property (strong, nonatomic) IBOutlet UIButton *submit;
+@property (strong) UITableView  *tableView;
 @end
